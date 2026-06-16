@@ -1,5 +1,5 @@
 node_modules/
 dist/
-amplify_outputs.json
 .amplify/
 .env*.local
+admin-setup.sh

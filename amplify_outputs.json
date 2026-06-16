@@ -1,0 +1,38 @@
+{
+  "version": "1",
+  "auth": {
+    "aws_region": "us-east-1",
+    "user_pool_id": "us-east-1_2uyRoEM8g",
+    "user_pool_client_id": "21gq5cmjbjdb7ebdphpkf41baj",
+    "identity_pool_id": "us-east-1:c3a7fd7e-efbb-47e0-871d-7ed722049a6a",
+    "username_attributes": ["email"],
+    "standard_required_attributes": ["email"],
+    "user_verification_types": ["email"],
+    "unauthenticated_identities_enabled": false,
+    "mfa_configuration": "NONE",
+    "mfa_methods": [],
+    "password_policy": {
+      "min_length": 8,
+      "require_lowercase": true,
+      "require_uppercase": true,
+      "require_numbers": true,
+      "require_symbols": true
+    }
+  },
+  "storage": {
+    "aws_region": "us-east-1",
+    "bucket_name": "retanqueo-repo-documental",
+    "buckets": [
+      {
+        "name": "pdf-uploads",
+        "bucket_name": "retanqueo-repo-documental",
+        "aws_region": "us-east-1",
+        "paths": {
+          "uploads/{entity_id}/*": {
+            "authenticated": ["get", "write", "delete"]
+          }
+        }
+      }
+    ]
+  }
+}
