@@ -1,0 +1,30 @@
+{
+  "name": "pdf-upload-app",
+  "version": "1.0.0",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "sandbox": "ampx sandbox --profile GenAISet_TDI-317990169237",
+    "sandbox:delete": "ampx sandbox delete --profile GenAISet_TDI-317990169237"
+  },
+  "dependencies": {
+    "@aws-amplify/ui-react": "^6",
+    "aws-amplify": "^6",
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "@aws-amplify/backend": "^1",
+    "@aws-amplify/backend-cli": "^1",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@vitejs/plugin-react": "^4",
+    "typescript": "^5",
+    "vite": "^5"
+  }
+}
