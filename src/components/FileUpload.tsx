@@ -1,4 +1,5 @@
 import { uploadData } from 'aws-amplify/storage';
+import { fetchUserAttributes } from 'aws-amplify/auth';
 import { useState, useRef } from 'react';
 
 type UploadStatus = 'idle' | 'uploading' | 'success' | 'error';
@@ -48,6 +49,8 @@ export default function FileUpload() {
     setState(s => ({ ...s, status: 'uploading', progress: 0, error: null }));
 
     try {
+      const { email, name } = await fetchUserAttributes();
+
       await uploadData({
         path: ({ identityId }) => `uploads/${identityId}/${Date.now()}-${fileName}`,
         data: state.file!,
@@ -58,6 +61,10 @@ export default function FileUpload() {
               const pct = Math.round((transferredBytes / totalBytes) * 100);
               setState(s => ({ ...s, progress: pct }));
             }
+          },
+          metadata: {
+            ...(email && { uploaderEmail: email }),
+            ...(name && { uploaderName: name }),
           },
         },
       }).result;

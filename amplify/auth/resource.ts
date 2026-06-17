@@ -9,5 +9,12 @@ export const auth = defineAuth({
       required: true,
       mutable: true,
     },
+    'custom:Cédula': {
+      dataType: "Number",
+      mutable: true,
+      maxLen: 10,
+      minLen: 1,
+      required: true,
+    }
   },
 });

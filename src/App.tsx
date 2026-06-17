@@ -6,8 +6,9 @@ const formFields = {
   signUp: {
     name: { order: 1, label: 'Full Name', placeholder: 'Enter your full name' },
     email: { order: 2 },
-    password: { order: 3 },
-    confirm_password: { order: 4 },
+    'custom:Cédula': { order: 3, label: 'Cédula', placeholder: 'Enter your cédula' },
+    password: { order: 4 },
+    confirm_password: { order: 5 },
   },
 };
 
@@ -35,7 +36,7 @@ export default function App() {
   return (
     <Authenticator
       loginMechanisms={['email']}
-      signUpAttributes={['name']}
+      signUpAttributes={['name', 'custom:Cédula']}
       formFields={formFields}
       components={{
         Header() {
