@@ -44,15 +44,21 @@ export default function FileUpload() {
   async function handleUpload() {
     if (!state.file) return;
 
-    const fileName = state.file.name;
+    const fileBaseName = state.file.name.replace(/\.pdf$/i, '');
 
     setState(s => ({ ...s, status: 'uploading', progress: 0, error: null }));
 
     try {
-      const { email, name } = await fetchUserAttributes();
+      const userAttributes = await fetchUserAttributes();
+      const { email, name } = userAttributes;
+      const cedula = userAttributes['custom:Cédula'];
+
+      if (!cedula) {
+        throw new Error('No se encontro la cedula del usuario en Cognito.');
+      }
 
       await uploadData({
-        path: ({ identityId }) => `uploads/${identityId}/${Date.now()}-${fileName}`,
+        path: `documentos-retanqueo/${cedula}/${Date.now()}-${fileBaseName}.pdf`,
         data: state.file!,
         options: {
           contentType: 'application/pdf',
